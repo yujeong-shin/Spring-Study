@@ -17,19 +17,22 @@ public class AppConfig {
     // MemberService 역할
     @Bean
     public MemberService memberService() {
+        System.out.println("call AppConfig.memberService");
         return new MemberServiceImpl(memberRepository());
     }
 
     // MemberRepository 역할
     @Bean
     public MemberRepository memberRepository() {
+        System.out.println("call AppConfig.memberRepository");
         return new MemoryMemberRepository();
     }
 
     // OrderService 역할
     @Bean
     public OrderService orderService() {
-        return new OrderServiceImpl(new MemoryMemberRepository(), discountPolicy());
+        System.out.println("call AppConfig.orderService");
+        return new OrderServiceImpl(memberRepository(), discountPolicy());
     }
 
     // DiscountPolicy 역할
